@@ -1,4 +1,4 @@
-{{ config(schema='raw_staging') }}
+{{ config(materialized='table',schema='raw_staging') }}
 
 SELECT DISTINCT
     c.value:id::BIGINT AS city_id
@@ -6,6 +6,7 @@ SELECT DISTINCT
   , c.value:name::NVARCHAR AS city
   , c.value:coord:lat AS lat
   , c.value:coord:lon AS lon
+  , CURRENT_TIMESTAMP AS load_datetime
 FROM
     SNOWFLAKE_SAMPLE_DATA.WEATHER.DAILY_14_TOTAL w,
         lateral flatten(input => w.v, recursive => true) c,
