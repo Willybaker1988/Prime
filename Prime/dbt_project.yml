@@ -2,7 +2,7 @@
 # Name your package! Package names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'my_new_package'
+name: 'my_project'
 version: '1.0'
 
 # This setting configures which "profile" dbt uses for this project. Profiles contain
@@ -31,13 +31,13 @@ clean-targets:         # directories to be removed by `dbt clean`
 # as views (the default). These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  my_new_package:
+  my_project:
       # Applies to all files under models/example/
-      example:
-          materialized: view
+        raw_staging:
+            schema: raw_staging
 
 seeds:
-    my_new_package: 
+    my_project: 
         enabled: true
         schema: seed_data
         # This configures data/country_codes.csv
