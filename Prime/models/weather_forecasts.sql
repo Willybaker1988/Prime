@@ -1,5 +1,7 @@
+{{ config(schema='raw_staging') }}
+
 SELECT 
-    MD5(CONCAT(w.t,'', w.v)) as WKEY
+    c.value:id::BIGINT AS id AS city_id   
   , d.value:dt::INT AS  datetime
   , d.value:clouds::INT AS clouds
   , d.value:deg::INT AS deg
@@ -11,7 +13,11 @@ SELECT
   , d1.value:main::VARCHAR AS main
 FROM
   SNOWFLAKE_SAMPLE_DATA.WEATHER.DAILY_14_TOTAL w,
+      lateral flatten(input => w.v, recursive => true) c,
       lateral flatten(input => w.v, path => 'data') d,
       lateral flatten(input => d.value, path => 'weather') d1 
 WHERE
     w.t::DATE =  CURRENT_DATE - INTERVAL '1 days'
+AND
+    c.value:country::NVARCHAR IS NOT NULL;
+    

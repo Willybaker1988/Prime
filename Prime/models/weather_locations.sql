@@ -1,6 +1,7 @@
-SELECT 
-    MD5(CONCAT(w.t,'', w.v)) as WKEY
-  , c.value:id::BIGINT AS id
+{{ config(schema='raw_staging') }}
+
+SELECT DISTINCT
+    c.value:id::BIGINT AS city_id
   , c.value:country::NVARCHAR AS country_code
   , c.value:name::NVARCHAR AS city
   , c.value:coord:lat AS lat
