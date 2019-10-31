@@ -9,7 +9,7 @@
                         'CITY_HASHDIFF', true)]) -}},
 
 {{ dbtvault.add_columns(source_table,
-                        [('!1', 'SOURCE'),
-                         ('LOAD_DATETIME', 'EFFECTIVE_FROM')])                    }}
+                        [('!WEATHER_14_TOTAL', 'SOURCE'),
+                         ('LOAD_DATETIME', 'LOADDATE')])                    }}
 
 {{ dbtvault.from(source_table)                                                }}
