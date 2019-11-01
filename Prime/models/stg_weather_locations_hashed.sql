@@ -5,11 +5,11 @@
 {{ dbtvault.multi_hash([('CITY_ID', 'CITY_PK'),                           
                         ('COUNTRY_CODE', 'COUNTRY_PK'),                               
                         (['COUNTRY_CODE','CITY_ID'], 'COUNTRY_CITY_PK'),     
-                        (['CITY_ID', 'LAT','LON'],                      
-                        'CITY_HASHDIFF', true)]) -}},
+                        (['LAT','LON'],                      
+                        'LOCATION_HASHDIFF', true)]) -}},
 
 {{ dbtvault.add_columns(source_table,
                         [('!WEATHER_14_TOTAL', 'SOURCE'),
-                         ('LOAD_DATETIME', 'LOADDATE')])                    }}
+                         ('LOAD_DATETIME', 'EFFECTIVE_FROM')])                    }}
 
 {{ dbtvault.from(source_table)                                                }}

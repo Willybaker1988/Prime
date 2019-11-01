@@ -1,11 +1,10 @@
 {{- config(materialized='incremental', enabled=true, tags='hub') -}}
 
-{%- set source = [ref('stg_weather_locations_hashed'),
-                  ref('stg_weather_forecasts_hashed')]                                       -%}
+{%- set source = [ref('stg_weather_locations_hashed')]                                       -%}
 
 
-{%- set src_pk = 'CITY_PK'                                                      -%}
-{%- set src_nk = 'CITY_ID'                                                      -%}
+{%- set src_pk = 'COUNTRY_PK'                                                      -%}
+{%- set src_nk = 'COUNTRY_CODE'                                                      -%}
 {%- set src_ldts = 'LOAD_DATETIME'                                                       -%}
 {%- set src_source = 'SOURCE'                                                       -%}
 

@@ -5,7 +5,7 @@
 
 {%- set src_pk = 'COUNTRY_CITY_PK'                                                      -%}
 {%- set src_nk =  ['COUNTRY_PK','CITY_PK']                                                     -%}
-{%- set src_ldts = 'LOADDATE'                                                       -%}
+{%- set src_ldts = 'LOAD_DATETIME'                                                       -%}
 {%- set src_source = 'SOURCE'                                                       -%}
 
 
