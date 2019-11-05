@@ -1,6 +1,6 @@
 {{- config(materialized='view', schema='raw_staging', enabled=true, tags='staging') -}}
 
-{%- set source_table = source('analytics_raw_staging', 'stg_weather_forecasts')                        -%}
+{%- set source_table = source('analytics_raw_staging', 'weather_forecasts')                        -%}
 
 {{ dbtvault.multi_hash([('CITY_ID', 'CITY_PK'),                                                          
                         (['CREATED_DATETIME','CLOUDS', 'DEG','HUMIDITY','PRESSURE','SNOW','SPEED','DESCRIPTION','MAIN'],                      

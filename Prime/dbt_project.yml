@@ -38,11 +38,11 @@ models:
 
 seeds:
     my_project: 
+        schema: raw_staging
         enabled: true
-        schema: seed_data
         # This configures data/country_codes.csv
         country_codes:
         # Override column types
         column_types:
             country_code: varchar(2)
-            country_name: varchar(32)
+            country_name: varchar(150)

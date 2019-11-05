@@ -3,5 +3,5 @@ version: 2
 sources:
   - name: analytics_raw_staging
     tables:
-      - name: stg_weather_forecasts
-      - name: stg_weather_locations
+      - name: weather_forecasts
+      - name: weather_locations
