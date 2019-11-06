@@ -1,15 +1,6 @@
 version: 2
 
 sources:
-  - name: weather
-    schema: staging
-    tables:
-      - name: weather_forecasts
-        description: This is weather forecast data available from Snowflake.
-      - name: weather_locations
-        description: This is weather forecast data available from Snowflake.
-
-sources:
   - name: staging
     schema: staging
     tables:
