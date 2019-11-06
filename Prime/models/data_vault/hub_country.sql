@@ -1,4 +1,4 @@
-{{- config(materialized='incremental', enabled=true, tags='hub') -}}
+{{- config(materialized='incremental',schema='data_vault', enabled=true, tags='hub') -}}
 
 {%- set source = [ref('stg_weather_locations_hashed')]                                       -%}
 

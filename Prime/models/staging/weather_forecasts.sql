@@ -1,4 +1,4 @@
-{{ config(materialized='table',schema='raw_staging',tags='source') }}
+{{ config(materialized='table',schema='staging',tags='source') }}
 
 SELECT 
     c.value:id::BIGINT AS city_id   

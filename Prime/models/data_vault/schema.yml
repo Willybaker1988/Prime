@@ -1,0 +1,13 @@
+version: 2
+
+models:
+    - name: hub_city
+      description: hub_city
+    - name: hub_country
+      description: hub_country
+    - name: link_locations
+      description: link_locations
+    - name: sat_forecasts
+      description: sat_forecasts
+    - name: sat_locations
+      description: sat_locations

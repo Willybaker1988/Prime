@@ -1,7 +1,0 @@
-version: 2
-
-sources:
-  - name: analytics_raw_staging
-    tables:
-      - name: weather_forecasts
-      - name: weather_locations

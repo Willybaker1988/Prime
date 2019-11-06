@@ -1,6 +1,6 @@
-{{- config(materialized='view', schema='raw_staging', enabled=true, tags='staging') -}}
+{{- config(materialized='view', schema='staging', enabled=true, tags='staging') -}}
 
-{%- set source_table = source('analytics_raw_staging', 'weather_locations')                        -%}
+{%- set source_table = source('staging', 'weather_locations')                        -%}
 
 {{ dbtvault.multi_hash([('CITY_ID', 'CITY_PK'),                           
                         ('COUNTRY_CODE', 'COUNTRY_PK'),                               

@@ -1,4 +1,4 @@
-{{- config(materialized='incremental', enabled=true, tags='sat') -}}
+{{- config(materialized='incremental',schema='data_vault', enabled=true, tags='sat') -}}
 
 {%- set source = [ref('stg_weather_locations_hashed')]                                       -%}
 

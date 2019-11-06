@@ -30,16 +30,29 @@ clean-targets:         # directories to be removed by `dbt clean`
 # In this example config, we tell dbt to build all models in the example/ directory
 # as views (the default). These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
+on-run-start: 
+    - "CREATE SCHEMA IF NOT EXISTS DW_FRAMEWORK"
+    - "CREATE TABLE IF NOT EXISTS DW_FRAMEWORK.AUDIT_LOG (event_model text, event_name text, event_timestamp timestamp, event_schema text)"
+
+
 models:
-  my_project:
+    my_project:
       # Applies to all files under models/example/
-        raw_staging:
-            schema: raw_staging
+      # Creates pre-post hooks to insert records into Audit Log
+        pre-hook: 
+            - "INSERT INTO DW_FRAMEWORK.AUDIT_LOG (event_name, event_timestamp, event_schema, event_model) values ( 'starting model deployment', to_timestamp_ntz(current_timestamp()), '{{this.schema}}', '{{this.name}}')"
+        post-hook:
+            - "INSERT INTO DW_FRAMEWORK.AUDIT_LOG (event_name, event_timestamp, event_schema, event_model) values ( 'completed model deployment', to_timestamp_ntz(current_timestamp()), '{{this.schema}}', '{{this.name}}')"
+
+
 
 seeds:
     my_project: 
-        schema: raw_staging
         enabled: true
+        pre-hook: 
+            - "INSERT INTO DW_FRAMEWORK.AUDIT_LOG (event_name, event_timestamp, event_schema, event_model) values ( 'starting model deployment', to_timestamp_ntz(current_timestamp()), '{{this.schema}}', '{{this.name}}')"
+        post-hook:
+            - "INSERT INTO DW_FRAMEWORK.AUDIT_LOG (event_name, event_timestamp, event_schema, event_model) values ( 'completed model deployment', to_timestamp_ntz(current_timestamp()), '{{this.schema}}', '{{this.name}}')"
         # This configures data/country_codes.csv
         country_codes:
         # Override column types
