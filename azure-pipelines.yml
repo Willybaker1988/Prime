@@ -12,6 +12,21 @@ pool:
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      #Install the latest pip
+      sudo pip install -U pip
+      # Then upgrade cffi
+      sudo apt-get remove python-cffi
+      sudo pip install — upgrade cffi
+      sudo apt-get install git libpq-dev python-dev
+      # Specify the version on install
+      sudo pip install cryptography==1.7.2
+      sudo pip install dbt
+      dbt — help
+
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
